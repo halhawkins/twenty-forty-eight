@@ -9,8 +9,11 @@ type GameOverType = {
 const GameOver = ( props: GameOverType ) => {
   return <div className="game-over"></div>
 }
+type GameBoardType = {
+  score?: (newScore: number) => void,
+}
 
-const GameBoard: React.FC = () => {
+const GameBoard = (props: GameBoardType) => {
 
 
   // Function to add a '2' or a '4' in a random empty cell
@@ -29,6 +32,8 @@ const GameBoard: React.FC = () => {
       }
     }
     let randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    console.log("random cell: " + randomCell);
+    // props.score(randomCell);
     if (randomCell === undefined) {
       setGameOver(true);
       return;
@@ -97,6 +102,8 @@ const GameBoard: React.FC = () => {
         if (i > 0 && nonZeroElements[i] === nonZeroElements[i - 1]) {
             // Combine equal elements and skip the next element
             const combined = nonZeroElements[i] * 2;
+            if (props.score !== undefined)
+              props.score(combined);
             result.unshift(combined);
             setScore(score + combined);
             i--; // Skip the next element as it's combined
@@ -125,6 +132,9 @@ const GameBoard: React.FC = () => {
         if (i < nonZeroElements.length - 1 && nonZeroElements[i] === nonZeroElements[i + 1]) {
             // Combine equal elements and skip the next element
             result.push(nonZeroElements[i] * 2);
+            if ( props.score!== undefined ) {
+              props.score(nonZeroElements[i] * 2)
+            }
             i++; // Skip the next element as it's combined
         } else {
             // Move non-zero elements
@@ -211,18 +221,22 @@ const GameBoard: React.FC = () => {
       switch (event.key) {
         case 'ArrowLeft':
         case 'a':
-          moveLeft();
+        case 'A':
+            moveLeft();
           break;
         case 'ArrowDown':
         case 's':
+        case 'S':
           moveDown();
           break;
         case 'ArrowRight':
         case 'd':
+        case 'D':
           moveRight();
           break;
         case 'ArrowUp':
         case 'w':
+        case 'W':
           moveUp();
           break;
         default:
@@ -238,13 +252,13 @@ const GameBoard: React.FC = () => {
   }, [grid]);
 
   return (
-    <div style={{width: "480px"}}>
+    <div className='game-container'>
       <div className='game-grid'>
         {grid.map((row, i) => (
-          <div key={i} style={{ display: 'flex' }}>
+          <div key={i} className='grid-row'>
             {row.map((cell, j) => (
-              <div className='cell' key={j} style={{  border: '1px solid black', textAlign: 'center', fontSize: cell.toString().length === 2 ? '3.5rem' : cell.toString().length === 3 ? '2.5rem' : cell.toString().length === 4 ? '2.25' : '4rem' }}>
-                <span style={{ position: 'relative', display: 'inline-block', top: '50%', left: '50&', transform: 'translateX(-50%) translateY(-50%)'}}>{cell !== 0 ? cell : null}</span>
+              <div className='cell' key={j} style={{  border: '1px solid black', textAlign: 'center', fontSize: cell.toString().length === 2 ? '1rem' : cell.toString().length === 3 ? '1rem' : cell.toString().length === 4 ? '1rem' : '1rem' }}>
+                <span>{cell !== 0 ? cell : null}</span>
               </div>
             ))}
           </div>

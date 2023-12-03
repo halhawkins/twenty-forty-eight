@@ -1,22 +1,41 @@
 .game-grid {
     display: flex;
-    width: 800px;
-    height: 800px;
+    width: 67%;
+    height: 67%;
+    flex-basis: 67%;
     flex-wrap: wrap;
-    position: absolute;
+    position: relative;
+}
+.grid-row {
+    display: flex;
+    flex-basis: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* position: relative; */
+    height: calc(17.5vw);
 }
 .cell {
     background-color: cornflowerblue;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 4rem;
+    font-size: 1rem;
     font-weight: 900;
-    padding: 40px;
-    width: 120px;
-    height: 120px;
-    flex-basis: 120px;
+    text-align: center;
+    /* padding: 40px; */
+    width: 25%;
+    /* height: 25%; */
+    flex-basis: 25%;
+    flex-shrink: 0;
+    flex-grow: 0;
     border-width: 0 !important;
-
     outline: 1px solid black;
+    display: flex;
+    justify-content: center;
+
+}
+.cell span {
+    /* background-color:blueviolet; */
+    align-self: center;
+    font-size: 3rem;
 }
 .game-over {
     position: absolute;
@@ -25,4 +44,13 @@
     top: 0;
     left: 0;
     background-color: #f007;
+}
+.game-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }

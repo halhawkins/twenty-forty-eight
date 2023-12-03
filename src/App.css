@@ -30,11 +30,19 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.score-container {
+  position: relative;
+  /* top: 2rem; */
+  /* left: 820px; */
+  background-color: darkblue;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 67%;
+}
+.score {
+  font-size: 3rem;
+  color: white;
+}
+.all-time-high-score {
+  color: white;
 }
