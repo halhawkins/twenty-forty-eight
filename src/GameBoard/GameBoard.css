@@ -1,0 +1,28 @@
+.game-grid {
+    display: flex;
+    width: 800px;
+    height: 800px;
+    flex-wrap: wrap;
+    position: absolute;
+}
+.cell {
+    background-color: cornflowerblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    padding: 40px;
+    width: 120px;
+    height: 120px;
+    flex-basis: 120px;
+    border-width: 0 !important;
+
+    outline: 1px solid black;
+}
+.game-over {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 0;
+    left: 0;
+    background-color: #f007;
+}
